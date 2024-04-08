@@ -55,5 +55,4 @@ Non-Functional Requirements
 •	Performance: Light-weight application for speed and reliability. 
 •	Security: Encrypted storage procedures and secure payment architecture through trusted third-party services. 
 •	Legal: Compliance with financial laws and privacy laws. 
-![Uploading image.png…]()
 
