@@ -1,4 +1,6 @@
 ## Papa Pizza Ordering System
+#UPDATE: Every option except 4 works rn
+import time
 class Pizza: 
     def __init__(self, name, price):
         self.name = name
@@ -84,14 +86,37 @@ def main():
             order.order_details()
             
         elif choice == "3":
-            order.order_details()
+            if order.total() == 0:
+                print("No orders to process")
+            else:
+                order_summary = f"\nOrder Summary: \n"
+                for pizza, quantity in order.pizza:
+                    order_summary += f"{pizza.name} | Quantity: {quantity}\n"
+                order_summary += f"Subtotal: ${order.subtotal:.2f}\n"
+                order_summary += f"Delivery: ${order.delivery * 8.0:.2f}\n"
+                order_summary += f"GST: ${order.gst():.2f}\n"
+                order_summary += f"Total: ${order.total():.2f}\n"
+                
+                fileext = "order_summary.txt"
+                with open(fileext, "a") as file:
+                    file.write("---------------------------------")
+                    file.write(order_summary)
+                
+                print(f"Order summary saved to {fileext}")
         
         elif choice == "4":
             # Generate Daily Sales Summary
             pass
         
         elif choice == "5":
+            print("3...")
+            time.sleep(1)
+            print("2..")
+            time.sleep(1)
+            print("1.")
+            time.sleep(1)
             print("Exiting...")
+            time.sleep(1)
             break
         
         else:
