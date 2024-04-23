@@ -1,5 +1,6 @@
 ## Papa Pizza Ordering System
-#UPDATE: Every option except 4 works rn
+#it took me 15 days, 5 hours, 24 seconds and 32 cups of coffee to get me here
+#need to comment stuff on it
 import time
 class Pizza: 
     def __init__(self, name, price):
@@ -105,18 +106,15 @@ def main():
                 print(f"Order summary saved to {fileext}")
         
         elif choice == "4":
-            # Generate Daily Sales Summary
-            pass
+            fileext1 = "order_summary.txt"
+            with open(fileext1, "r") as file:
+                file_content = file.read()
+                print("Daily Sales Summary: \n", file_content)
         
         elif choice == "5":
-            print("3...")
-            time.sleep(1)
-            print("2..")
-            time.sleep(1)
-            print("1.")
             time.sleep(1)
             print("Exiting...")
-            time.sleep(1)
+            time.sleep(3)
             break
         
         else:
