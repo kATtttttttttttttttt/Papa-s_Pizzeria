@@ -1,98 +1,128 @@
-//Classes
+// Papa Pizza Ordering System
+
+// -------------------------
+// classes
+// -------------------------
+
 CLASS pizza
     name(string)
     price(float)
     FUNCTION __init__(self, name, price)
         self.name = name
-        self.price = price
+        self.price = price 
     END FUNCTION
 END CLASS
 
 CLASS orders
-    customer_name(string)
-    loyalty_member(boolean)
-    delivery(boolena)
-    order_items(dictionary): pizza object, quantity  
-    total(float)
-
-    FUNCTION __init__(self, customer_name, loyalty_member, delivery, order_items, total)
-        self.customer_name = customer_name
-        self.loyalty_member = loyalty_member
-        self.delivery = delivery
-        self.order_items = {}
-        self.total = 0.0
+    FUNCTION __init__(self)
+        self.pizza = []
+        self.delivery = false
+        self.loyalty = false
+        self.subtotal = 0.0
     END FUNCTION
 
-    FUNCTION add_pizza(self, pizza, quantity)
-        self.order_items[pizza] = quantity
+    //[option 2 from menu] Program for selecting pizzas for the order 
+    FUNCTION add(self, pizza, quantity)
+        APPEND self.pizza FOR (pizza, quantity)
+        self.subtotal += pizza.price * quantity
     END FUNCTION
 
-    FUNCTION calc_discount(self)
-        IF self.total > 100 OR self.loyalty_member THEN
-            self.total * 0.95
-        ELSE self.total = self.total 
-        END IF
-
+    //[option 2 from menu] optional delivery ($8)
+    FUNCTION delv(self, delivery)
+        self.delivery = delivery 
+        IF delivery is true add 8.00 TO self.subtotal
     END FUNCTION
 
-    FUNCTION calc_gst(self)
-        self.total += self.total * 0.1
+    //[option 2 from menu] optional loyalty card inclusion (10% off)
+    FUNCTION loy(self, loyalty)
+        self.loyalty = loyalty
     END FUNCTION
 
-    FUNCTION calc_total(self)
-        total_base = 0.0
-        FOR pizza, quantity IN self.order_items
-            total_base += pizza.price * quantity
-        END FOR 
-        self.total = total
-        self.calc_discount()
-        self.total += 8.00 if self.delivery else 0.0
+    //if a loyalty card or the order is about $100 5% discount is applied  
+    FUNCTION discount(self)
+        IF self.subtotal > 100 OR self.loyalty == true
+            RETURN self.subtotal * 0.95
     END FUNCTION
 
-    FUNCTION prsummary(self)
-        PRINT "Order Summary for " + self.customer_name
-        FOR pizza, quantity IN self.order_items
-            PRINT quantity + " " + pizza.name
+    //adding the gst tax to when selecting the order (10%)
+    FUNCTION gst(self)
+        RETURN self.discount() * 0.1
+    END FUNCTION
+    
+    //adding the discount and gst to get the total
+    FUNCTION total(self):
+        RETURN self.discount() + self.gst()
+    END FUNCTION
+
+    //printing out the order details
+    FUNCTION order_details(self)
+        PRINT "\nDetails"
+        FOR pizza, quantity in self.pizza
+            PRINT f"{pizza.name} | Quantity: {quantity}"
         END FOR
-        PRINT "Total $" + self.total.toFixed(2)
+        PRINT f"Subtotal: ${self.subtotal:.2f}"
+        PRINT f"Delivery: ${self.delivery * 8.0:.2f}"
+        PRINT f"GST: ${self.gst():.2f}"
+        PRINT f"Total: ${self.total():.2f}\n"
     END FUNCTION
-END CLASS
 
-// Main Program
+// -------------------------
+// Subprograms
+// -------------------------
 
-pizzas: //list all the pizzas here (data-dictionary)
+FUNCTION main()
+    pizzas = {
+        //write data dictionary of pizzas
+    }
+    
+    order.orders()
 
-REPEAT 
-    //list can change
-    PRINT "1. Add Order"
-    PRINT "2. Process Order"
-    PRINT "3. Remove Orders"
-    PRINT "4. Generate Daily Sales Summary"
-    PRINT "5. Exit"
-    choice = GET choice //Enter your choice (1-5):
+    WHILE true
+        PRINT "\nOrdering System: " //Title of menu
+        //list the menu items...
+    END WHILE
+    INPUT(choice)
+    
+    IF choice is "1"
+        PRINT "Menu: "
+        PRINT //##items from data dictionary go here##
 
-    // Menu
-    IF 1 is selected THEN 
-        self.customer_name = GET customer_name //could be potentially removed from final program
-        order_items.pizza_type = GET type of pizza
-        order_items.quantity = GET pizza quantity
-        self.loyalty_member = GET y/n
-        self.delivery = GET y/n 
-    END IF 
+    ELIF choice is "2"
+        INPUT(pizza_type)
+        INPUT(quantity)
+        IF pizza_type IN pizzas //data dictionary name is pizzas
+            //store pizza_type in memory + check if pizza is in data dictionary
+        ELSE
+            PRINT "Invalid"
+        
+        INPUT(delivery)
+            CALL delv(delivery)
+        INPUT(loyalty)
+            CALL loy(loyalty)
+        INPUT(order_details)
+            CALL order_details()
 
-    IF 2 is selected THEN
-        prsummary()
-        WRITE prsummary in "summary.txt"
+    ELIF choice is "3"
+        IF no orders are present 
+            PRINT "No orders"
+        ELSE 
+            PRINT //order summary structure
 
-    IF 3 is selected THEN 
-        REMOVE content in "summary.txt"
-        SEEK and TRUNICATE 
+        WRITE TO order_summary.txt
 
-    IF 4 is selected THEN
-        READ "summary.txt"  and SELECT file_contents
-        PRINT file_contents
+        PRINT "Order summary has been saved"
 
-    IF 5 is selected THEN
-        BREAK //exit the loop
-    END IF
-END REPEAT
+    ELIF choice is "4"
+        PRINT contents in order_summary.txt
+
+    ELIF choice is "5"
+        break WHILE
+
+    ELSE:
+     PRINT "Invalid"
+
+// -------------------------
+// Main program
+// -------------------------
+
+CALL main()
