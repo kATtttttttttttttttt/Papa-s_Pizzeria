@@ -68,8 +68,7 @@ def main():
         "margherita": Pizza("Margherita", 18.50)
     }  
     
-    order = Orders()  # Create an instance of Orders outside the loop to preserve order details
-    
+    order = Orders()
     while True:  
         print("\nOrdering System")
         print("1. View Menu")
