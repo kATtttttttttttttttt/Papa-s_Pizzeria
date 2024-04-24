@@ -1,7 +1,10 @@
 ## Papa Pizza Ordering System
-#it took me 15 days, 5 hours, 24 seconds and 32 cups of coffee to get me here
-#need to comment stuff on it
+#I just thought it would be cool to import time
 import time
+
+# -------------------------
+# Classes
+# -------------------------
 class Pizza: 
     def __init__(self, name, price):
         self.name = name
@@ -13,30 +16,37 @@ class Orders:
         self.delivery = False
         self.loyalty = False
         self.subtotal = 0.0
-        
+    
+    #[option 2 from menu] Program for selecting pizzas for the order 
     def add(self, pizza, quantity):
         self.pizza.append((pizza, quantity))
         self.subtotal += pizza.price * quantity
-        
+    
+    #[option 2 from menu] optional delivery ($8)
     def delv(self, delivery):
         self.delivery = delivery
         if delivery:
             self.subtotal += 8.00 
-            
+    
+    #[option 2 from menu] optional loyalty card inclusion (10% off)
     def loy(self,loyalty):
         self.loyalty = loyalty
-        
+     
+    #if a loyalty card or the order is about $100 5% discount is applied  
     def discount(self):
         if self.subtotal > 100 or self.loyalty:
             return self.subtotal * 0.95 
         return self.subtotal
     
+    #adding the gst tax to when selecting the order (10%)
     def gst(self):
         return self.discount() * 0.1
     
+    #adding the discount and gst to get the total
     def total(self):
         return self.discount() + self.gst()
     
+    #printing out the order details
     def order_details(self):
         print("\nDetails: ")
         for pizza, quantity in self.pizza: 
@@ -45,7 +55,9 @@ class Orders:
         print(f"Delivery: ${self.delivery * 8.0:.2f}")
         print(f"GST: ${self.gst():.2f}")
         print(f"Total: ${self.total():.2f}\n")
- 
+# -------------------------
+# Subprograms
+# -------------------------
 def main():
     pizzas = {
         "pepperoni": Pizza("Pepperoni", 21.00),
@@ -119,6 +131,10 @@ def main():
         
         else:
             print("Invalid Input")
+
+# -------------------------
+# Main program
+# -------------------------
 
 if __name__ == "__main__":
     main()
