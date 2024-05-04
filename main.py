@@ -69,6 +69,7 @@ def main():
     }  
     
     order = Orders()
+    
     while True:  
         print("\nOrdering System")
         print("1. View Menu")
