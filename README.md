@@ -4,7 +4,7 @@ School Project 1 - Please do not try to view the pdf file on Github (its terribl
 Quick GIF of how it works!
 ======
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](https://drive.google.com/file/d/1uUMW-rYCUdQ1bAtfYyYAzbzb7valUpdl/view?usp=sharing)
 
 ## Screenshot of Result file (order_summary.txt) created
 - After creating an order (option 2), then processing it (option 3). A file named "order_summary.txt" will be created in the same directory as the "main.py" file.
