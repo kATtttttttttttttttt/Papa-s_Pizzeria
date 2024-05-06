@@ -11,4 +11,4 @@ School Project 1 - Please do not try to view the pdf file on Github (its terribl
 
 Functioning
 ======
-<img src="https://github.com/kATtttttttttttttttt/Papa-s_Pizzeria/assets/163737404/e1b606ba-2535-4bf6-a4cf-82c9f63095f8" width="800">
+<img src="https://github.com/kATtttttttttttttttt/Papa-s_Pizzeria/assets/163737404/a23d46f3-3ab9-4877-9387-26120b1080ec" width="750">
